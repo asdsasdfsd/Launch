@@ -1,0 +1,20 @@
+<?xml version='1.0' ?>
+
+<launch>
+
+  <arg name="use_sim_time" default="true" description="Use the /clock topic for time to sync with simulation"/>
+  <arg name="config_file" description="The config file that provides important parameters for setting up the adapter"/>
+  <arg name="nav_graph_file" description="The graph that this fleet should use for navigation"/>
+  <arg name="output" default="screen"/>
+
+  <group>
+      <node pkg="fleet_adapter_mir"
+            exec="fleet_adapter_mir"
+            args="-c $(var config_file) -n $(var nav_graph_file)"
+            output="both">
+
+        <param name="use_sim_time" value="$(var use_sim_time)"/>
+      </node>
+  </group>
+
+</launch>
